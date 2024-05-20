@@ -37,7 +37,8 @@ class TranscriptionController extends Controller
         $contentOutPut = $response->choices[0]->message->content;
 
         return view('transcription.create', [
-            'content' => $contentOutPut
+            'content'      => $contentOutPut,
+            'contentInPut' => $contentInPut
         ]);
     }
 }

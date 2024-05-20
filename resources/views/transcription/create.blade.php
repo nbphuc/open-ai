@@ -20,6 +20,10 @@
                     <input type="file" id="myfile" name="radio" required><br><br>
                 </div>
                 <div class="col-9">
+                    @if (isset($contentInPut))
+                        <label for="myfile"><h2>In Put:</h2></label>
+                        <h4>{{ $contentInPut }}</h4>
+                    @endif
                     @if (isset($content))
                         <label for="myfile"><h2>Out Put:</h2></label>
                         <h4>{{ $content }}</h4>

@@ -25,16 +25,19 @@ class TranscriptionController extends Controller
             'model'           => 'whisper-1',
         ]);
         $contentInPut = $response->text;
-        $response     = OpenAI::chat()->create([
-            'model'    => 'gpt-4-turbo-preview',
-            'messages' => [
-                [
-                    'role'    => 'user',
-                    'content' => $contentInPut
-                ]
+        $userMessages = [
+            [
+                'role'    => 'user',
+                'content' => $contentInPut
             ]
+        ];
+        $response = OpenAI::chat()->create([
+            'model'    => 'gpt-4',
+            'messages' => $userMessages
         ]);
-        $contentOutPut = $response->choices[0]->message->content;
+        $choices       = $response->choices;
+        $titleResponse = end($choices);
+        $contentOutPut = $titleResponse->message->content;
 
         return view('transcription.create', [
             'content'      => $contentOutPut,

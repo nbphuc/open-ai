@@ -32,7 +32,7 @@ class TranscriptionController extends Controller
             ]
         ];
         $response = OpenAI::chat()->create([
-            'model'    => 'gpt-4',
+            'model'    => 'gpt-4o',
             'messages' => $userMessages
         ]);
         $choices       = $response->choices;
